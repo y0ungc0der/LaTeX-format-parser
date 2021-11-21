@@ -1,0 +1,3256 @@
+Terminals unused in grammar
+
+   END
+   ERR
+
+
+State 25 conflicts: 1 shift/reduce
+State 32 conflicts: 18 shift/reduce
+State 38 conflicts: 2 shift/reduce
+State 39 conflicts: 2 shift/reduce
+State 46 conflicts: 17 shift/reduce
+State 55 conflicts: 1 shift/reduce
+State 65 conflicts: 2 shift/reduce
+State 113 conflicts: 2 shift/reduce
+State 120 conflicts: 1 shift/reduce
+State 125 conflicts: 1 shift/reduce
+State 139 conflicts: 1 shift/reduce
+State 170 conflicts: 1 shift/reduce
+State 172 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: start code
+    2      | code
+
+    3 code: DOCCLASS preamble BEGINDOC body ENDDOC
+
+    4 preamble: preamble usepackage
+    5         | preamble author
+    6         | preamble titletype
+    7         | /* empty */
+
+    8 usepackage: USEPACKAGE LCBR math RCBR
+    9           | USEPACKAGE LSBR math RSBR LCBR math RCBR
+   10           | USEPACKAGE LCBR RCBR
+   11           | USEPACKAGE LSBR RSBR LCBR RCBR
+   12           | math
+
+   13 title: titletype title
+   14      | titletype
+   15      | author title
+   16      | author
+
+   17 titletype: TITLE LCBR math RCBR
+   18          | TITLE LCBR RCBR
+   19          | TITLE LSBR math RSBR LCBR math RCBR
+   20          | TITLE LCBR math RCBR LSBR math RSBR LCBR math RCBR
+   21          | TITLE LSBR RSBR LCBR RCBR
+
+   22 author: AUTHOR LCBR math RCBR
+   23       | AUTHOR LCBR RCBR
+
+   24 body: part body
+   25     | part
+
+   26 textenvir: text textenvir
+   27          | text
+
+   28 text: LCBR math RCBR
+   29     | LSBR math RSBR
+
+   30 part: math
+   31     | title
+
+   32 math: operand
+   33     | LSKF math RSKF
+
+   34 operand: operand LCBR RCBR
+   35        | operand LCBR math RCBR
+   36        | operand SPACE LCBR math RCBR
+   37        | operand LCBR operand RCBR
+   38        | operand LSBR math RSBR
+   39        | operand environment
+   40        | operand textoption
+   41        | operand if
+   42        | SPACE LCBR math RCBR
+   43        | LCBR operand RCBR
+   44        | LSBR math RSBR
+   45        | environment
+   46        | textoption
+   47        | if
+   48        | operand POW math
+   49        | operand POW LCBR math RCBR
+   50        | operand POW LCBR math RCBR LCBR math RCBR
+   51        | operand POW LCBR RCBR LCBR math RCBR
+   52        | operand POW LCBR math RCBR LCBR RCBR
+   53        | operand POW LCBR RCBR LCBR RCBR
+   54        | operand INDEX math
+   55        | operand INDEX LCBR math RCBR
+   56        | operand INDEX LCBR math RCBR LCBR math RCBR
+   57        | operand INDEX LCBR RCBR LCBR math RCBR
+   58        | operand INDEX LCBR math RCBR LCBR RCBR
+   59        | operand INDEX LCBR RCBR LCBR RCBR
+
+   60 if: IF math ENDIF
+
+   61 environment: BEGINENV textenvir ENDENV textenvir
+   62            | BEGINENV textenvir body ENDENV textenvir
+   63            | BEGINENV textenvir LCBR body RCBR ENDENV textenvir
+   64            | LCBR BEGINENV LCBR textoption RCBR math RCBR
+   65            | LCBR math BEGINENV LCBR textoption RCBR RCBR
+   66            | LCBR BEGINENV LCBR textoption RCBR RCBR
+   67            | LCBR ENDENV LCBR textoption RCBR math RCBR
+   68            | LCBR math ENDENV LCBR textoption RCBR RCBR
+   69            | LCBR ENDENV LCBR textoption RCBR RCBR
+
+   70 textoption: WORD
+   71           | BSL LCBR WORD BSL RCBR
+   72           | FORMAT
+   73           | OPERATOR
+   74           | NEWPAGE
+   75           | MAKETITLE
+   76           | INPUT LCBR math RCBR
+   77           | INPUT LSBR math RSBR LCBR math RCBR
+   78           | INPUT LSBR RSBR LCBR math RCBR
+   79           | INPUT LSBR RSBR LCBR RCBR
+   80           | INPUT LSBR math RSBR LCBR RCBR
+   81           | INPUT LSBR math RSBR LSBR math RSBR LCBR math RCBR
+   82           | INPUT LSBR math RSBR LSBR math RSBR LSBR math RSBR LCBR math RCBR
+   83           | FORMAT LCBR math RCBR
+   84           | LSBR OPERATOR RSBR
+   85           | INTEGER
+   86           | SPECCHAR
+   87           | BSL WORD
+   88           | TABLEOFCONT
+   89           | MATH
+   90           | BSL OPERATOR
+   91           | LSBR RSBR
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+SPACE (258) 36 42
+OPERATOR (259) 73 84 90
+SPECCHAR (260) 86
+BEGINDOC (261) 3
+ENDDOC (262) 3
+DOCCLASS (263) 3
+LCBR (264) 8 9 10 11 17 18 19 20 21 22 23 28 34 35 36 37 42 43 49 50
+    51 52 53 55 56 57 58 59 63 64 65 66 67 68 69 71 76 77 78 79 80
+    81 82 83
+RCBR (265) 8 9 10 11 17 18 19 20 21 22 23 28 34 35 36 37 42 43 49 50
+    51 52 53 55 56 57 58 59 63 64 65 66 67 68 69 71 76 77 78 79 80
+    81 82 83
+TITLE (266) 17 18 19 20 21
+POW (267) 48 49 50 51 52 53
+END (268)
+USEPACKAGE (269) 8 9 10 11
+MAKETITLE (270) 75
+AUTHOR (271) 22 23
+INDEX (272) 54 55 56 57 58 59
+TABLEOFCONT (273) 88
+MATH (274) 89
+BSL (275) 71 87 90
+LSBR (276) 9 11 19 20 21 29 38 44 77 78 79 80 81 82 84 91
+RSBR (277) 9 11 19 20 21 29 38 44 77 78 79 80 81 82 84 91
+NEWPAGE (278) 74
+INPUT (279) 76 77 78 79 80 81 82
+LSKF (280) 33
+RSKF (281) 33
+ENDIF (282) 60
+IF (283) 60
+BEGINENV (284) 61 62 63 64 65 66
+ENDENV (285) 61 62 63 67 68 69
+ERR (286)
+FORMAT (287) 72 83
+INTEGER (288) 85
+WORD (289) 70 71 87
+
+
+Nonterminals, with rules where they appear
+
+$accept (35)
+    on left: 0
+start (36)
+    on left: 1 2, on right: 0 1
+code (37)
+    on left: 3, on right: 1 2
+preamble (38)
+    on left: 4 5 6 7, on right: 3 4 5 6
+usepackage (39)
+    on left: 8 9 10 11 12, on right: 4
+title (40)
+    on left: 13 14 15 16, on right: 13 15 31
+titletype (41)
+    on left: 17 18 19 20 21, on right: 6 13 14
+author (42)
+    on left: 22 23, on right: 5 15 16
+body (43)
+    on left: 24 25, on right: 3 24 62 63
+textenvir (44)
+    on left: 26 27, on right: 26 61 62 63
+text (45)
+    on left: 28 29, on right: 26 27
+part (46)
+    on left: 30 31, on right: 24 25
+math (47)
+    on left: 32 33, on right: 8 9 12 17 19 20 22 28 29 30 33 35 36
+    38 42 44 48 49 50 51 52 54 55 56 57 58 60 64 65 67 68 76 77 78
+    80 81 82 83
+operand (48)
+    on left: 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+    52 53 54 55 56 57 58 59, on right: 32 34 35 36 37 38 39 40 41 43
+    48 49 50 51 52 53 54 55 56 57 58 59
+if (49)
+    on left: 60, on right: 41 47
+environment (50)
+    on left: 61 62 63 64 65 66 67 68 69, on right: 39 45
+textoption (51)
+    on left: 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87
+    88 89 90 91, on right: 40 46 64 65 66 67 68 69
+
+
+State 0
+
+    0 $accept: . start $end
+
+    DOCCLASS  shift, and go to state 1
+
+    start  go to state 2
+    code   go to state 3
+
+
+State 1
+
+    3 code: DOCCLASS . preamble BEGINDOC body ENDDOC
+
+    $default  reduce using rule 7 (preamble)
+
+    preamble  go to state 4
+
+
+State 2
+
+    0 $accept: start . $end
+    1 start: start . code
+
+    $end      shift, and go to state 5
+    DOCCLASS  shift, and go to state 1
+
+    code  go to state 6
+
+
+State 3
+
+    2 start: code .
+
+    $default  reduce using rule 2 (start)
+
+
+State 4
+
+    3 code: DOCCLASS preamble . BEGINDOC body ENDDOC
+    4 preamble: preamble . usepackage
+    5         | preamble . author
+    6         | preamble . titletype
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    BEGINDOC     shift, and go to state 10
+    LCBR         shift, and go to state 11
+    TITLE        shift, and go to state 12
+    USEPACKAGE   shift, and go to state 13
+    MAKETITLE    shift, and go to state 14
+    AUTHOR       shift, and go to state 15
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    usepackage   go to state 28
+    titletype    go to state 29
+    author       go to state 30
+    math         go to state 31
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 5
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+State 6
+
+    1 start: start code .
+
+    $default  reduce using rule 1 (start)
+
+
+State 7
+
+   42 operand: SPACE . LCBR math RCBR
+
+    LCBR  shift, and go to state 36
+
+
+State 8
+
+   73 textoption: OPERATOR .
+
+    $default  reduce using rule 73 (textoption)
+
+
+State 9
+
+   86 textoption: SPECCHAR .
+
+    $default  reduce using rule 86 (textoption)
+
+
+State 10
+
+    3 code: DOCCLASS preamble BEGINDOC . body ENDDOC
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    TITLE        shift, and go to state 12
+    MAKETITLE    shift, and go to state 14
+    AUTHOR       shift, and go to state 15
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    title        go to state 37
+    titletype    go to state 38
+    author       go to state 39
+    body         go to state 40
+    part         go to state 41
+    math         go to state 42
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 11
+
+   43 operand: LCBR . operand RCBR
+   64 environment: LCBR . BEGINENV LCBR textoption RCBR math RCBR
+   65            | LCBR . math BEGINENV LCBR textoption RCBR RCBR
+   66            | LCBR . BEGINENV LCBR textoption RCBR RCBR
+   67            | LCBR . ENDENV LCBR textoption RCBR math RCBR
+   68            | LCBR . math ENDENV LCBR textoption RCBR RCBR
+   69            | LCBR . ENDENV LCBR textoption RCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 43
+    ENDENV       shift, and go to state 44
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 45
+    operand      go to state 46
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 12
+
+   17 titletype: TITLE . LCBR math RCBR
+   18          | TITLE . LCBR RCBR
+   19          | TITLE . LSBR math RSBR LCBR math RCBR
+   20          | TITLE . LCBR math RCBR LSBR math RSBR LCBR math RCBR
+   21          | TITLE . LSBR RSBR LCBR RCBR
+
+    LCBR  shift, and go to state 47
+    LSBR  shift, and go to state 48
+
+
+State 13
+
+    8 usepackage: USEPACKAGE . LCBR math RCBR
+    9           | USEPACKAGE . LSBR math RSBR LCBR math RCBR
+   10           | USEPACKAGE . LCBR RCBR
+   11           | USEPACKAGE . LSBR RSBR LCBR RCBR
+
+    LCBR  shift, and go to state 49
+    LSBR  shift, and go to state 50
+
+
+State 14
+
+   75 textoption: MAKETITLE .
+
+    $default  reduce using rule 75 (textoption)
+
+
+State 15
+
+   22 author: AUTHOR . LCBR math RCBR
+   23       | AUTHOR . LCBR RCBR
+
+    LCBR  shift, and go to state 51
+
+
+State 16
+
+   88 textoption: TABLEOFCONT .
+
+    $default  reduce using rule 88 (textoption)
+
+
+State 17
+
+   89 textoption: MATH .
+
+    $default  reduce using rule 89 (textoption)
+
+
+State 18
+
+   71 textoption: BSL . LCBR WORD BSL RCBR
+   87           | BSL . WORD
+   90           | BSL . OPERATOR
+
+    OPERATOR  shift, and go to state 52
+    LCBR      shift, and go to state 53
+    WORD      shift, and go to state 54
+
+
+State 19
+
+   44 operand: LSBR . math RSBR
+   84 textoption: LSBR . OPERATOR RSBR
+   91           | LSBR . RSBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 55
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    RSBR         shift, and go to state 56
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 57
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 20
+
+   74 textoption: NEWPAGE .
+
+    $default  reduce using rule 74 (textoption)
+
+
+State 21
+
+   76 textoption: INPUT . LCBR math RCBR
+   77           | INPUT . LSBR math RSBR LCBR math RCBR
+   78           | INPUT . LSBR RSBR LCBR math RCBR
+   79           | INPUT . LSBR RSBR LCBR RCBR
+   80           | INPUT . LSBR math RSBR LCBR RCBR
+   81           | INPUT . LSBR math RSBR LSBR math RSBR LCBR math RCBR
+   82           | INPUT . LSBR math RSBR LSBR math RSBR LSBR math RSBR LCBR math RCBR
+
+    LCBR  shift, and go to state 58
+    LSBR  shift, and go to state 59
+
+
+State 22
+
+   33 math: LSKF . math RSKF
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 60
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 23
+
+   60 if: IF . math ENDIF
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 61
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 24
+
+   61 environment: BEGINENV . textenvir ENDENV textenvir
+   62            | BEGINENV . textenvir body ENDENV textenvir
+   63            | BEGINENV . textenvir LCBR body RCBR ENDENV textenvir
+
+    LCBR  shift, and go to state 62
+    LSBR  shift, and go to state 63
+
+    textenvir  go to state 64
+    text       go to state 65
+
+
+State 25
+
+   72 textoption: FORMAT .
+   83           | FORMAT . LCBR math RCBR
+
+    LCBR  shift, and go to state 66
+
+    LCBR      [reduce using rule 72 (textoption)]
+    $default  reduce using rule 72 (textoption)
+
+
+State 26
+
+   85 textoption: INTEGER .
+
+    $default  reduce using rule 85 (textoption)
+
+
+State 27
+
+   70 textoption: WORD .
+
+    $default  reduce using rule 70 (textoption)
+
+
+State 28
+
+    4 preamble: preamble usepackage .
+
+    $default  reduce using rule 4 (preamble)
+
+
+State 29
+
+    6 preamble: preamble titletype .
+
+    $default  reduce using rule 6 (preamble)
+
+
+State 30
+
+    5 preamble: preamble author .
+
+    $default  reduce using rule 5 (preamble)
+
+
+State 31
+
+   12 usepackage: math .
+
+    $default  reduce using rule 12 (usepackage)
+
+
+State 32
+
+   32 math: operand .
+   34 operand: operand . LCBR RCBR
+   35        | operand . LCBR math RCBR
+   36        | operand . SPACE LCBR math RCBR
+   37        | operand . LCBR operand RCBR
+   38        | operand . LSBR math RSBR
+   39        | operand . environment
+   40        | operand . textoption
+   41        | operand . if
+   48        | operand . POW math
+   49        | operand . POW LCBR math RCBR
+   50        | operand . POW LCBR math RCBR LCBR math RCBR
+   51        | operand . POW LCBR RCBR LCBR math RCBR
+   52        | operand . POW LCBR math RCBR LCBR RCBR
+   53        | operand . POW LCBR RCBR LCBR RCBR
+   54        | operand . INDEX math
+   55        | operand . INDEX LCBR math RCBR
+   56        | operand . INDEX LCBR math RCBR LCBR math RCBR
+   57        | operand . INDEX LCBR RCBR LCBR math RCBR
+   58        | operand . INDEX LCBR math RCBR LCBR RCBR
+   59        | operand . INDEX LCBR RCBR LCBR RCBR
+
+    SPACE        shift, and go to state 67
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 68
+    POW          shift, and go to state 69
+    MAKETITLE    shift, and go to state 14
+    INDEX        shift, and go to state 70
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 71
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    SPACE        [reduce using rule 32 (math)]
+    OPERATOR     [reduce using rule 32 (math)]
+    SPECCHAR     [reduce using rule 32 (math)]
+    LCBR         [reduce using rule 32 (math)]
+    POW          [reduce using rule 32 (math)]
+    MAKETITLE    [reduce using rule 32 (math)]
+    INDEX        [reduce using rule 32 (math)]
+    TABLEOFCONT  [reduce using rule 32 (math)]
+    MATH         [reduce using rule 32 (math)]
+    BSL          [reduce using rule 32 (math)]
+    LSBR         [reduce using rule 32 (math)]
+    NEWPAGE      [reduce using rule 32 (math)]
+    INPUT        [reduce using rule 32 (math)]
+    IF           [reduce using rule 32 (math)]
+    BEGINENV     [reduce using rule 32 (math)]
+    FORMAT       [reduce using rule 32 (math)]
+    INTEGER      [reduce using rule 32 (math)]
+    WORD         [reduce using rule 32 (math)]
+    $default     reduce using rule 32 (math)
+
+    if           go to state 72
+    environment  go to state 73
+    textoption   go to state 74
+
+
+State 33
+
+   47 operand: if .
+
+    $default  reduce using rule 47 (operand)
+
+
+State 34
+
+   45 operand: environment .
+
+    $default  reduce using rule 45 (operand)
+
+
+State 35
+
+   46 operand: textoption .
+
+    $default  reduce using rule 46 (operand)
+
+
+State 36
+
+   42 operand: SPACE LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 75
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 37
+
+   31 part: title .
+
+    $default  reduce using rule 31 (part)
+
+
+State 38
+
+   13 title: titletype . title
+   14      | titletype .
+
+    TITLE   shift, and go to state 12
+    AUTHOR  shift, and go to state 15
+
+    TITLE     [reduce using rule 14 (title)]
+    AUTHOR    [reduce using rule 14 (title)]
+    $default  reduce using rule 14 (title)
+
+    title      go to state 76
+    titletype  go to state 38
+    author     go to state 39
+
+
+State 39
+
+   15 title: author . title
+   16      | author .
+
+    TITLE   shift, and go to state 12
+    AUTHOR  shift, and go to state 15
+
+    TITLE     [reduce using rule 16 (title)]
+    AUTHOR    [reduce using rule 16 (title)]
+    $default  reduce using rule 16 (title)
+
+    title      go to state 77
+    titletype  go to state 38
+    author     go to state 39
+
+
+State 40
+
+    3 code: DOCCLASS preamble BEGINDOC body . ENDDOC
+
+    ENDDOC  shift, and go to state 78
+
+
+State 41
+
+   24 body: part . body
+   25     | part .
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    TITLE        shift, and go to state 12
+    MAKETITLE    shift, and go to state 14
+    AUTHOR       shift, and go to state 15
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    $default  reduce using rule 25 (body)
+
+    title        go to state 37
+    titletype    go to state 38
+    author       go to state 39
+    body         go to state 79
+    part         go to state 41
+    math         go to state 42
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 42
+
+   30 part: math .
+
+    $default  reduce using rule 30 (part)
+
+
+State 43
+
+   61 environment: BEGINENV . textenvir ENDENV textenvir
+   62            | BEGINENV . textenvir body ENDENV textenvir
+   63            | BEGINENV . textenvir LCBR body RCBR ENDENV textenvir
+   64            | LCBR BEGINENV . LCBR textoption RCBR math RCBR
+   66            | LCBR BEGINENV . LCBR textoption RCBR RCBR
+
+    LCBR  shift, and go to state 80
+    LSBR  shift, and go to state 63
+
+    textenvir  go to state 64
+    text       go to state 65
+
+
+State 44
+
+   67 environment: LCBR ENDENV . LCBR textoption RCBR math RCBR
+   69            | LCBR ENDENV . LCBR textoption RCBR RCBR
+
+    LCBR  shift, and go to state 81
+
+
+State 45
+
+   65 environment: LCBR math . BEGINENV LCBR textoption RCBR RCBR
+   68            | LCBR math . ENDENV LCBR textoption RCBR RCBR
+
+    BEGINENV  shift, and go to state 82
+    ENDENV    shift, and go to state 83
+
+
+State 46
+
+   32 math: operand .
+   34 operand: operand . LCBR RCBR
+   35        | operand . LCBR math RCBR
+   36        | operand . SPACE LCBR math RCBR
+   37        | operand . LCBR operand RCBR
+   38        | operand . LSBR math RSBR
+   39        | operand . environment
+   40        | operand . textoption
+   41        | operand . if
+   43        | LCBR operand . RCBR
+   48        | operand . POW math
+   49        | operand . POW LCBR math RCBR
+   50        | operand . POW LCBR math RCBR LCBR math RCBR
+   51        | operand . POW LCBR RCBR LCBR math RCBR
+   52        | operand . POW LCBR math RCBR LCBR RCBR
+   53        | operand . POW LCBR RCBR LCBR RCBR
+   54        | operand . INDEX math
+   55        | operand . INDEX LCBR math RCBR
+   56        | operand . INDEX LCBR math RCBR LCBR math RCBR
+   57        | operand . INDEX LCBR RCBR LCBR math RCBR
+   58        | operand . INDEX LCBR math RCBR LCBR RCBR
+   59        | operand . INDEX LCBR RCBR LCBR RCBR
+
+    SPACE        shift, and go to state 67
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 68
+    RCBR         shift, and go to state 84
+    POW          shift, and go to state 69
+    MAKETITLE    shift, and go to state 14
+    INDEX        shift, and go to state 70
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 71
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    SPACE        [reduce using rule 32 (math)]
+    OPERATOR     [reduce using rule 32 (math)]
+    SPECCHAR     [reduce using rule 32 (math)]
+    LCBR         [reduce using rule 32 (math)]
+    RCBR         [reduce using rule 32 (math)]
+    MAKETITLE    [reduce using rule 32 (math)]
+    TABLEOFCONT  [reduce using rule 32 (math)]
+    MATH         [reduce using rule 32 (math)]
+    BSL          [reduce using rule 32 (math)]
+    LSBR         [reduce using rule 32 (math)]
+    NEWPAGE      [reduce using rule 32 (math)]
+    INPUT        [reduce using rule 32 (math)]
+    IF           [reduce using rule 32 (math)]
+    BEGINENV     [reduce using rule 32 (math)]
+    FORMAT       [reduce using rule 32 (math)]
+    INTEGER      [reduce using rule 32 (math)]
+    WORD         [reduce using rule 32 (math)]
+    $default     reduce using rule 32 (math)
+
+    if           go to state 72
+    environment  go to state 73
+    textoption   go to state 74
+
+
+State 47
+
+   17 titletype: TITLE LCBR . math RCBR
+   18          | TITLE LCBR . RCBR
+   20          | TITLE LCBR . math RCBR LSBR math RSBR LCBR math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 85
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 86
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 48
+
+   19 titletype: TITLE LSBR . math RSBR LCBR math RCBR
+   21          | TITLE LSBR . RSBR LCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    RSBR         shift, and go to state 87
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 88
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 49
+
+    8 usepackage: USEPACKAGE LCBR . math RCBR
+   10           | USEPACKAGE LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 89
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 90
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 50
+
+    9 usepackage: USEPACKAGE LSBR . math RSBR LCBR math RCBR
+   11           | USEPACKAGE LSBR . RSBR LCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    RSBR         shift, and go to state 91
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 92
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 51
+
+   22 author: AUTHOR LCBR . math RCBR
+   23       | AUTHOR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 93
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 94
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 52
+
+   90 textoption: BSL OPERATOR .
+
+    $default  reduce using rule 90 (textoption)
+
+
+State 53
+
+   71 textoption: BSL LCBR . WORD BSL RCBR
+
+    WORD  shift, and go to state 95
+
+
+State 54
+
+   87 textoption: BSL WORD .
+
+    $default  reduce using rule 87 (textoption)
+
+
+State 55
+
+   73 textoption: OPERATOR .
+   84           | LSBR OPERATOR . RSBR
+
+    RSBR  shift, and go to state 96
+
+    RSBR      [reduce using rule 73 (textoption)]
+    $default  reduce using rule 73 (textoption)
+
+
+State 56
+
+   91 textoption: LSBR RSBR .
+
+    $default  reduce using rule 91 (textoption)
+
+
+State 57
+
+   44 operand: LSBR math . RSBR
+
+    RSBR  shift, and go to state 97
+
+
+State 58
+
+   76 textoption: INPUT LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 98
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 59
+
+   77 textoption: INPUT LSBR . math RSBR LCBR math RCBR
+   78           | INPUT LSBR . RSBR LCBR math RCBR
+   79           | INPUT LSBR . RSBR LCBR RCBR
+   80           | INPUT LSBR . math RSBR LCBR RCBR
+   81           | INPUT LSBR . math RSBR LSBR math RSBR LCBR math RCBR
+   82           | INPUT LSBR . math RSBR LSBR math RSBR LSBR math RSBR LCBR math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    RSBR         shift, and go to state 99
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 100
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 60
+
+   33 math: LSKF math . RSKF
+
+    RSKF  shift, and go to state 101
+
+
+State 61
+
+   60 if: IF math . ENDIF
+
+    ENDIF  shift, and go to state 102
+
+
+State 62
+
+   28 text: LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 103
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 63
+
+   29 text: LSBR . math RSBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 104
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 64
+
+   61 environment: BEGINENV textenvir . ENDENV textenvir
+   62            | BEGINENV textenvir . body ENDENV textenvir
+   63            | BEGINENV textenvir . LCBR body RCBR ENDENV textenvir
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 105
+    TITLE        shift, and go to state 12
+    MAKETITLE    shift, and go to state 14
+    AUTHOR       shift, and go to state 15
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    ENDENV       shift, and go to state 106
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    title        go to state 37
+    titletype    go to state 38
+    author       go to state 39
+    body         go to state 107
+    part         go to state 41
+    math         go to state 42
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 65
+
+   26 textenvir: text . textenvir
+   27          | text .
+
+    LCBR  shift, and go to state 62
+    LSBR  shift, and go to state 63
+
+    LCBR      [reduce using rule 27 (textenvir)]
+    LSBR      [reduce using rule 27 (textenvir)]
+    $default  reduce using rule 27 (textenvir)
+
+    textenvir  go to state 108
+    text       go to state 65
+
+
+State 66
+
+   83 textoption: FORMAT LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 109
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 67
+
+   36 operand: operand SPACE . LCBR math RCBR
+
+    LCBR  shift, and go to state 110
+
+
+State 68
+
+   34 operand: operand LCBR . RCBR
+   35        | operand LCBR . math RCBR
+   37        | operand LCBR . operand RCBR
+   64 environment: LCBR . BEGINENV LCBR textoption RCBR math RCBR
+   65            | LCBR . math BEGINENV LCBR textoption RCBR RCBR
+   66            | LCBR . BEGINENV LCBR textoption RCBR RCBR
+   67            | LCBR . ENDENV LCBR textoption RCBR math RCBR
+   68            | LCBR . math ENDENV LCBR textoption RCBR RCBR
+   69            | LCBR . ENDENV LCBR textoption RCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 111
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 43
+    ENDENV       shift, and go to state 44
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 112
+    operand      go to state 113
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 69
+
+   48 operand: operand POW . math
+   49        | operand POW . LCBR math RCBR
+   50        | operand POW . LCBR math RCBR LCBR math RCBR
+   51        | operand POW . LCBR RCBR LCBR math RCBR
+   52        | operand POW . LCBR math RCBR LCBR RCBR
+   53        | operand POW . LCBR RCBR LCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 114
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 115
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 70
+
+   54 operand: operand INDEX . math
+   55        | operand INDEX . LCBR math RCBR
+   56        | operand INDEX . LCBR math RCBR LCBR math RCBR
+   57        | operand INDEX . LCBR RCBR LCBR math RCBR
+   58        | operand INDEX . LCBR math RCBR LCBR RCBR
+   59        | operand INDEX . LCBR RCBR LCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 116
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 117
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 71
+
+   38 operand: operand LSBR . math RSBR
+   84 textoption: LSBR . OPERATOR RSBR
+   91           | LSBR . RSBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 55
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    RSBR         shift, and go to state 56
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 118
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 72
+
+   41 operand: operand if .
+
+    $default  reduce using rule 41 (operand)
+
+
+State 73
+
+   39 operand: operand environment .
+
+    $default  reduce using rule 39 (operand)
+
+
+State 74
+
+   40 operand: operand textoption .
+
+    $default  reduce using rule 40 (operand)
+
+
+State 75
+
+   42 operand: SPACE LCBR math . RCBR
+
+    RCBR  shift, and go to state 119
+
+
+State 76
+
+   13 title: titletype title .
+
+    $default  reduce using rule 13 (title)
+
+
+State 77
+
+   15 title: author title .
+
+    $default  reduce using rule 15 (title)
+
+
+State 78
+
+    3 code: DOCCLASS preamble BEGINDOC body ENDDOC .
+
+    $default  reduce using rule 3 (code)
+
+
+State 79
+
+   24 body: part body .
+
+    $default  reduce using rule 24 (body)
+
+
+State 80
+
+   28 text: LCBR . math RCBR
+   64 environment: LCBR BEGINENV LCBR . textoption RCBR math RCBR
+   66            | LCBR BEGINENV LCBR . textoption RCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 103
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 120
+
+
+State 81
+
+   67 environment: LCBR ENDENV LCBR . textoption RCBR math RCBR
+   69            | LCBR ENDENV LCBR . textoption RCBR RCBR
+
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 121
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    textoption  go to state 122
+
+
+State 82
+
+   65 environment: LCBR math BEGINENV . LCBR textoption RCBR RCBR
+
+    LCBR  shift, and go to state 123
+
+
+State 83
+
+   68 environment: LCBR math ENDENV . LCBR textoption RCBR RCBR
+
+    LCBR  shift, and go to state 124
+
+
+State 84
+
+   43 operand: LCBR operand RCBR .
+
+    $default  reduce using rule 43 (operand)
+
+
+State 85
+
+   18 titletype: TITLE LCBR RCBR .
+
+    $default  reduce using rule 18 (titletype)
+
+
+State 86
+
+   17 titletype: TITLE LCBR math . RCBR
+   20          | TITLE LCBR math . RCBR LSBR math RSBR LCBR math RCBR
+
+    RCBR  shift, and go to state 125
+
+
+State 87
+
+   21 titletype: TITLE LSBR RSBR . LCBR RCBR
+
+    LCBR  shift, and go to state 126
+
+
+State 88
+
+   19 titletype: TITLE LSBR math . RSBR LCBR math RCBR
+
+    RSBR  shift, and go to state 127
+
+
+State 89
+
+   10 usepackage: USEPACKAGE LCBR RCBR .
+
+    $default  reduce using rule 10 (usepackage)
+
+
+State 90
+
+    8 usepackage: USEPACKAGE LCBR math . RCBR
+
+    RCBR  shift, and go to state 128
+
+
+State 91
+
+   11 usepackage: USEPACKAGE LSBR RSBR . LCBR RCBR
+
+    LCBR  shift, and go to state 129
+
+
+State 92
+
+    9 usepackage: USEPACKAGE LSBR math . RSBR LCBR math RCBR
+
+    RSBR  shift, and go to state 130
+
+
+State 93
+
+   23 author: AUTHOR LCBR RCBR .
+
+    $default  reduce using rule 23 (author)
+
+
+State 94
+
+   22 author: AUTHOR LCBR math . RCBR
+
+    RCBR  shift, and go to state 131
+
+
+State 95
+
+   71 textoption: BSL LCBR WORD . BSL RCBR
+
+    BSL  shift, and go to state 132
+
+
+State 96
+
+   84 textoption: LSBR OPERATOR RSBR .
+
+    $default  reduce using rule 84 (textoption)
+
+
+State 97
+
+   44 operand: LSBR math RSBR .
+
+    $default  reduce using rule 44 (operand)
+
+
+State 98
+
+   76 textoption: INPUT LCBR math . RCBR
+
+    RCBR  shift, and go to state 133
+
+
+State 99
+
+   78 textoption: INPUT LSBR RSBR . LCBR math RCBR
+   79           | INPUT LSBR RSBR . LCBR RCBR
+
+    LCBR  shift, and go to state 134
+
+
+State 100
+
+   77 textoption: INPUT LSBR math . RSBR LCBR math RCBR
+   80           | INPUT LSBR math . RSBR LCBR RCBR
+   81           | INPUT LSBR math . RSBR LSBR math RSBR LCBR math RCBR
+   82           | INPUT LSBR math . RSBR LSBR math RSBR LSBR math RSBR LCBR math RCBR
+
+    RSBR  shift, and go to state 135
+
+
+State 101
+
+   33 math: LSKF math RSKF .
+
+    $default  reduce using rule 33 (math)
+
+
+State 102
+
+   60 if: IF math ENDIF .
+
+    $default  reduce using rule 60 (if)
+
+
+State 103
+
+   28 text: LCBR math . RCBR
+
+    RCBR  shift, and go to state 136
+
+
+State 104
+
+   29 text: LSBR math . RSBR
+
+    RSBR  shift, and go to state 137
+
+
+State 105
+
+   43 operand: LCBR . operand RCBR
+   63 environment: BEGINENV textenvir LCBR . body RCBR ENDENV textenvir
+   64            | LCBR . BEGINENV LCBR textoption RCBR math RCBR
+   65            | LCBR . math BEGINENV LCBR textoption RCBR RCBR
+   66            | LCBR . BEGINENV LCBR textoption RCBR RCBR
+   67            | LCBR . ENDENV LCBR textoption RCBR math RCBR
+   68            | LCBR . math ENDENV LCBR textoption RCBR RCBR
+   69            | LCBR . ENDENV LCBR textoption RCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    TITLE        shift, and go to state 12
+    MAKETITLE    shift, and go to state 14
+    AUTHOR       shift, and go to state 15
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 43
+    ENDENV       shift, and go to state 44
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    title        go to state 37
+    titletype    go to state 38
+    author       go to state 39
+    body         go to state 138
+    part         go to state 41
+    math         go to state 139
+    operand      go to state 46
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 106
+
+   61 environment: BEGINENV textenvir ENDENV . textenvir
+
+    LCBR  shift, and go to state 62
+    LSBR  shift, and go to state 63
+
+    textenvir  go to state 140
+    text       go to state 65
+
+
+State 107
+
+   62 environment: BEGINENV textenvir body . ENDENV textenvir
+
+    ENDENV  shift, and go to state 141
+
+
+State 108
+
+   26 textenvir: text textenvir .
+
+    $default  reduce using rule 26 (textenvir)
+
+
+State 109
+
+   83 textoption: FORMAT LCBR math . RCBR
+
+    RCBR  shift, and go to state 142
+
+
+State 110
+
+   36 operand: operand SPACE LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 143
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 111
+
+   34 operand: operand LCBR RCBR .
+
+    $default  reduce using rule 34 (operand)
+
+
+State 112
+
+   35 operand: operand LCBR math . RCBR
+   65 environment: LCBR math . BEGINENV LCBR textoption RCBR RCBR
+   68            | LCBR math . ENDENV LCBR textoption RCBR RCBR
+
+    RCBR      shift, and go to state 144
+    BEGINENV  shift, and go to state 82
+    ENDENV    shift, and go to state 83
+
+
+State 113
+
+   32 math: operand .
+   34 operand: operand . LCBR RCBR
+   35        | operand . LCBR math RCBR
+   36        | operand . SPACE LCBR math RCBR
+   37        | operand . LCBR operand RCBR
+   37        | operand LCBR operand . RCBR
+   38        | operand . LSBR math RSBR
+   39        | operand . environment
+   40        | operand . textoption
+   41        | operand . if
+   48        | operand . POW math
+   49        | operand . POW LCBR math RCBR
+   50        | operand . POW LCBR math RCBR LCBR math RCBR
+   51        | operand . POW LCBR RCBR LCBR math RCBR
+   52        | operand . POW LCBR math RCBR LCBR RCBR
+   53        | operand . POW LCBR RCBR LCBR RCBR
+   54        | operand . INDEX math
+   55        | operand . INDEX LCBR math RCBR
+   56        | operand . INDEX LCBR math RCBR LCBR math RCBR
+   57        | operand . INDEX LCBR RCBR LCBR math RCBR
+   58        | operand . INDEX LCBR math RCBR LCBR RCBR
+   59        | operand . INDEX LCBR RCBR LCBR RCBR
+
+    SPACE        shift, and go to state 67
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 68
+    RCBR         shift, and go to state 145
+    POW          shift, and go to state 69
+    MAKETITLE    shift, and go to state 14
+    INDEX        shift, and go to state 70
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 71
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    RCBR      [reduce using rule 32 (math)]
+    BEGINENV  [reduce using rule 32 (math)]
+    $default  reduce using rule 32 (math)
+
+    if           go to state 72
+    environment  go to state 73
+    textoption   go to state 74
+
+
+State 114
+
+   43 operand: LCBR . operand RCBR
+   49        | operand POW LCBR . math RCBR
+   50        | operand POW LCBR . math RCBR LCBR math RCBR
+   51        | operand POW LCBR . RCBR LCBR math RCBR
+   52        | operand POW LCBR . math RCBR LCBR RCBR
+   53        | operand POW LCBR . RCBR LCBR RCBR
+   64 environment: LCBR . BEGINENV LCBR textoption RCBR math RCBR
+   65            | LCBR . math BEGINENV LCBR textoption RCBR RCBR
+   66            | LCBR . BEGINENV LCBR textoption RCBR RCBR
+   67            | LCBR . ENDENV LCBR textoption RCBR math RCBR
+   68            | LCBR . math ENDENV LCBR textoption RCBR RCBR
+   69            | LCBR . ENDENV LCBR textoption RCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 146
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 43
+    ENDENV       shift, and go to state 44
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 147
+    operand      go to state 46
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 115
+
+   48 operand: operand POW math .
+
+    $default  reduce using rule 48 (operand)
+
+
+State 116
+
+   43 operand: LCBR . operand RCBR
+   55        | operand INDEX LCBR . math RCBR
+   56        | operand INDEX LCBR . math RCBR LCBR math RCBR
+   57        | operand INDEX LCBR . RCBR LCBR math RCBR
+   58        | operand INDEX LCBR . math RCBR LCBR RCBR
+   59        | operand INDEX LCBR . RCBR LCBR RCBR
+   64 environment: LCBR . BEGINENV LCBR textoption RCBR math RCBR
+   65            | LCBR . math BEGINENV LCBR textoption RCBR RCBR
+   66            | LCBR . BEGINENV LCBR textoption RCBR RCBR
+   67            | LCBR . ENDENV LCBR textoption RCBR math RCBR
+   68            | LCBR . math ENDENV LCBR textoption RCBR RCBR
+   69            | LCBR . ENDENV LCBR textoption RCBR RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 148
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 43
+    ENDENV       shift, and go to state 44
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 149
+    operand      go to state 46
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 117
+
+   54 operand: operand INDEX math .
+
+    $default  reduce using rule 54 (operand)
+
+
+State 118
+
+   38 operand: operand LSBR math . RSBR
+
+    RSBR  shift, and go to state 150
+
+
+State 119
+
+   42 operand: SPACE LCBR math RCBR .
+
+    $default  reduce using rule 42 (operand)
+
+
+State 120
+
+   46 operand: textoption .
+   64 environment: LCBR BEGINENV LCBR textoption . RCBR math RCBR
+   66            | LCBR BEGINENV LCBR textoption . RCBR RCBR
+
+    RCBR  shift, and go to state 151
+
+    RCBR      [reduce using rule 46 (operand)]
+    $default  reduce using rule 46 (operand)
+
+
+State 121
+
+   84 textoption: LSBR . OPERATOR RSBR
+   91           | LSBR . RSBR
+
+    OPERATOR  shift, and go to state 152
+    RSBR      shift, and go to state 56
+
+
+State 122
+
+   67 environment: LCBR ENDENV LCBR textoption . RCBR math RCBR
+   69            | LCBR ENDENV LCBR textoption . RCBR RCBR
+
+    RCBR  shift, and go to state 153
+
+
+State 123
+
+   65 environment: LCBR math BEGINENV LCBR . textoption RCBR RCBR
+
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 121
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    textoption  go to state 154
+
+
+State 124
+
+   68 environment: LCBR math ENDENV LCBR . textoption RCBR RCBR
+
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 121
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    textoption  go to state 155
+
+
+State 125
+
+   17 titletype: TITLE LCBR math RCBR .
+   20          | TITLE LCBR math RCBR . LSBR math RSBR LCBR math RCBR
+
+    LSBR  shift, and go to state 156
+
+    LSBR      [reduce using rule 17 (titletype)]
+    $default  reduce using rule 17 (titletype)
+
+
+State 126
+
+   21 titletype: TITLE LSBR RSBR LCBR . RCBR
+
+    RCBR  shift, and go to state 157
+
+
+State 127
+
+   19 titletype: TITLE LSBR math RSBR . LCBR math RCBR
+
+    LCBR  shift, and go to state 158
+
+
+State 128
+
+    8 usepackage: USEPACKAGE LCBR math RCBR .
+
+    $default  reduce using rule 8 (usepackage)
+
+
+State 129
+
+   11 usepackage: USEPACKAGE LSBR RSBR LCBR . RCBR
+
+    RCBR  shift, and go to state 159
+
+
+State 130
+
+    9 usepackage: USEPACKAGE LSBR math RSBR . LCBR math RCBR
+
+    LCBR  shift, and go to state 160
+
+
+State 131
+
+   22 author: AUTHOR LCBR math RCBR .
+
+    $default  reduce using rule 22 (author)
+
+
+State 132
+
+   71 textoption: BSL LCBR WORD BSL . RCBR
+
+    RCBR  shift, and go to state 161
+
+
+State 133
+
+   76 textoption: INPUT LCBR math RCBR .
+
+    $default  reduce using rule 76 (textoption)
+
+
+State 134
+
+   78 textoption: INPUT LSBR RSBR LCBR . math RCBR
+   79           | INPUT LSBR RSBR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 162
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 163
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 135
+
+   77 textoption: INPUT LSBR math RSBR . LCBR math RCBR
+   80           | INPUT LSBR math RSBR . LCBR RCBR
+   81           | INPUT LSBR math RSBR . LSBR math RSBR LCBR math RCBR
+   82           | INPUT LSBR math RSBR . LSBR math RSBR LSBR math RSBR LCBR math RCBR
+
+    LCBR  shift, and go to state 164
+    LSBR  shift, and go to state 165
+
+
+State 136
+
+   28 text: LCBR math RCBR .
+
+    $default  reduce using rule 28 (text)
+
+
+State 137
+
+   29 text: LSBR math RSBR .
+
+    $default  reduce using rule 29 (text)
+
+
+State 138
+
+   63 environment: BEGINENV textenvir LCBR body . RCBR ENDENV textenvir
+
+    RCBR  shift, and go to state 166
+
+
+State 139
+
+   30 part: math .
+   65 environment: LCBR math . BEGINENV LCBR textoption RCBR RCBR
+   68            | LCBR math . ENDENV LCBR textoption RCBR RCBR
+
+    BEGINENV  shift, and go to state 82
+    ENDENV    shift, and go to state 83
+
+    BEGINENV  [reduce using rule 30 (part)]
+    $default  reduce using rule 30 (part)
+
+
+State 140
+
+   61 environment: BEGINENV textenvir ENDENV textenvir .
+
+    $default  reduce using rule 61 (environment)
+
+
+State 141
+
+   62 environment: BEGINENV textenvir body ENDENV . textenvir
+
+    LCBR  shift, and go to state 62
+    LSBR  shift, and go to state 63
+
+    textenvir  go to state 167
+    text       go to state 65
+
+
+State 142
+
+   83 textoption: FORMAT LCBR math RCBR .
+
+    $default  reduce using rule 83 (textoption)
+
+
+State 143
+
+   36 operand: operand SPACE LCBR math . RCBR
+
+    RCBR  shift, and go to state 168
+
+
+State 144
+
+   35 operand: operand LCBR math RCBR .
+
+    $default  reduce using rule 35 (operand)
+
+
+State 145
+
+   37 operand: operand LCBR operand RCBR .
+
+    $default  reduce using rule 37 (operand)
+
+
+State 146
+
+   51 operand: operand POW LCBR RCBR . LCBR math RCBR
+   53        | operand POW LCBR RCBR . LCBR RCBR
+
+    LCBR  shift, and go to state 169
+
+
+State 147
+
+   49 operand: operand POW LCBR math . RCBR
+   50        | operand POW LCBR math . RCBR LCBR math RCBR
+   52        | operand POW LCBR math . RCBR LCBR RCBR
+   65 environment: LCBR math . BEGINENV LCBR textoption RCBR RCBR
+   68            | LCBR math . ENDENV LCBR textoption RCBR RCBR
+
+    RCBR      shift, and go to state 170
+    BEGINENV  shift, and go to state 82
+    ENDENV    shift, and go to state 83
+
+
+State 148
+
+   57 operand: operand INDEX LCBR RCBR . LCBR math RCBR
+   59        | operand INDEX LCBR RCBR . LCBR RCBR
+
+    LCBR  shift, and go to state 171
+
+
+State 149
+
+   55 operand: operand INDEX LCBR math . RCBR
+   56        | operand INDEX LCBR math . RCBR LCBR math RCBR
+   58        | operand INDEX LCBR math . RCBR LCBR RCBR
+   65 environment: LCBR math . BEGINENV LCBR textoption RCBR RCBR
+   68            | LCBR math . ENDENV LCBR textoption RCBR RCBR
+
+    RCBR      shift, and go to state 172
+    BEGINENV  shift, and go to state 82
+    ENDENV    shift, and go to state 83
+
+
+State 150
+
+   38 operand: operand LSBR math RSBR .
+
+    $default  reduce using rule 38 (operand)
+
+
+State 151
+
+   64 environment: LCBR BEGINENV LCBR textoption RCBR . math RCBR
+   66            | LCBR BEGINENV LCBR textoption RCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 173
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 174
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 152
+
+   84 textoption: LSBR OPERATOR . RSBR
+
+    RSBR  shift, and go to state 96
+
+
+State 153
+
+   67 environment: LCBR ENDENV LCBR textoption RCBR . math RCBR
+   69            | LCBR ENDENV LCBR textoption RCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 175
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 176
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 154
+
+   65 environment: LCBR math BEGINENV LCBR textoption . RCBR RCBR
+
+    RCBR  shift, and go to state 177
+
+
+State 155
+
+   68 environment: LCBR math ENDENV LCBR textoption . RCBR RCBR
+
+    RCBR  shift, and go to state 178
+
+
+State 156
+
+   20 titletype: TITLE LCBR math RCBR LSBR . math RSBR LCBR math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 179
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 157
+
+   21 titletype: TITLE LSBR RSBR LCBR RCBR .
+
+    $default  reduce using rule 21 (titletype)
+
+
+State 158
+
+   19 titletype: TITLE LSBR math RSBR LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 180
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 159
+
+   11 usepackage: USEPACKAGE LSBR RSBR LCBR RCBR .
+
+    $default  reduce using rule 11 (usepackage)
+
+
+State 160
+
+    9 usepackage: USEPACKAGE LSBR math RSBR LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 181
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 161
+
+   71 textoption: BSL LCBR WORD BSL RCBR .
+
+    $default  reduce using rule 71 (textoption)
+
+
+State 162
+
+   79 textoption: INPUT LSBR RSBR LCBR RCBR .
+
+    $default  reduce using rule 79 (textoption)
+
+
+State 163
+
+   78 textoption: INPUT LSBR RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 182
+
+
+State 164
+
+   77 textoption: INPUT LSBR math RSBR LCBR . math RCBR
+   80           | INPUT LSBR math RSBR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 183
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 184
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 165
+
+   81 textoption: INPUT LSBR math RSBR LSBR . math RSBR LCBR math RCBR
+   82           | INPUT LSBR math RSBR LSBR . math RSBR LSBR math RSBR LCBR math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 185
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 166
+
+   63 environment: BEGINENV textenvir LCBR body RCBR . ENDENV textenvir
+
+    ENDENV  shift, and go to state 186
+
+
+State 167
+
+   62 environment: BEGINENV textenvir body ENDENV textenvir .
+
+    $default  reduce using rule 62 (environment)
+
+
+State 168
+
+   36 operand: operand SPACE LCBR math RCBR .
+
+    $default  reduce using rule 36 (operand)
+
+
+State 169
+
+   51 operand: operand POW LCBR RCBR LCBR . math RCBR
+   53        | operand POW LCBR RCBR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 187
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 188
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 170
+
+   49 operand: operand POW LCBR math RCBR .
+   50        | operand POW LCBR math RCBR . LCBR math RCBR
+   52        | operand POW LCBR math RCBR . LCBR RCBR
+
+    LCBR  shift, and go to state 189
+
+    LCBR      [reduce using rule 49 (operand)]
+    $default  reduce using rule 49 (operand)
+
+
+State 171
+
+   57 operand: operand INDEX LCBR RCBR LCBR . math RCBR
+   59        | operand INDEX LCBR RCBR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 190
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 191
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 172
+
+   55 operand: operand INDEX LCBR math RCBR .
+   56        | operand INDEX LCBR math RCBR . LCBR math RCBR
+   58        | operand INDEX LCBR math RCBR . LCBR RCBR
+
+    LCBR  shift, and go to state 192
+
+    LCBR      [reduce using rule 55 (operand)]
+    $default  reduce using rule 55 (operand)
+
+
+State 173
+
+   66 environment: LCBR BEGINENV LCBR textoption RCBR RCBR .
+
+    $default  reduce using rule 66 (environment)
+
+
+State 174
+
+   64 environment: LCBR BEGINENV LCBR textoption RCBR math . RCBR
+
+    RCBR  shift, and go to state 193
+
+
+State 175
+
+   69 environment: LCBR ENDENV LCBR textoption RCBR RCBR .
+
+    $default  reduce using rule 69 (environment)
+
+
+State 176
+
+   67 environment: LCBR ENDENV LCBR textoption RCBR math . RCBR
+
+    RCBR  shift, and go to state 194
+
+
+State 177
+
+   65 environment: LCBR math BEGINENV LCBR textoption RCBR . RCBR
+
+    RCBR  shift, and go to state 195
+
+
+State 178
+
+   68 environment: LCBR math ENDENV LCBR textoption RCBR . RCBR
+
+    RCBR  shift, and go to state 196
+
+
+State 179
+
+   20 titletype: TITLE LCBR math RCBR LSBR math . RSBR LCBR math RCBR
+
+    RSBR  shift, and go to state 197
+
+
+State 180
+
+   19 titletype: TITLE LSBR math RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 198
+
+
+State 181
+
+    9 usepackage: USEPACKAGE LSBR math RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 199
+
+
+State 182
+
+   78 textoption: INPUT LSBR RSBR LCBR math RCBR .
+
+    $default  reduce using rule 78 (textoption)
+
+
+State 183
+
+   80 textoption: INPUT LSBR math RSBR LCBR RCBR .
+
+    $default  reduce using rule 80 (textoption)
+
+
+State 184
+
+   77 textoption: INPUT LSBR math RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 200
+
+
+State 185
+
+   81 textoption: INPUT LSBR math RSBR LSBR math . RSBR LCBR math RCBR
+   82           | INPUT LSBR math RSBR LSBR math . RSBR LSBR math RSBR LCBR math RCBR
+
+    RSBR  shift, and go to state 201
+
+
+State 186
+
+   63 environment: BEGINENV textenvir LCBR body RCBR ENDENV . textenvir
+
+    LCBR  shift, and go to state 62
+    LSBR  shift, and go to state 63
+
+    textenvir  go to state 202
+    text       go to state 65
+
+
+State 187
+
+   53 operand: operand POW LCBR RCBR LCBR RCBR .
+
+    $default  reduce using rule 53 (operand)
+
+
+State 188
+
+   51 operand: operand POW LCBR RCBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 203
+
+
+State 189
+
+   50 operand: operand POW LCBR math RCBR LCBR . math RCBR
+   52        | operand POW LCBR math RCBR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 204
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 205
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 190
+
+   59 operand: operand INDEX LCBR RCBR LCBR RCBR .
+
+    $default  reduce using rule 59 (operand)
+
+
+State 191
+
+   57 operand: operand INDEX LCBR RCBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 206
+
+
+State 192
+
+   56 operand: operand INDEX LCBR math RCBR LCBR . math RCBR
+   58        | operand INDEX LCBR math RCBR LCBR . RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    RCBR         shift, and go to state 207
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 208
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 193
+
+   64 environment: LCBR BEGINENV LCBR textoption RCBR math RCBR .
+
+    $default  reduce using rule 64 (environment)
+
+
+State 194
+
+   67 environment: LCBR ENDENV LCBR textoption RCBR math RCBR .
+
+    $default  reduce using rule 67 (environment)
+
+
+State 195
+
+   65 environment: LCBR math BEGINENV LCBR textoption RCBR RCBR .
+
+    $default  reduce using rule 65 (environment)
+
+
+State 196
+
+   68 environment: LCBR math ENDENV LCBR textoption RCBR RCBR .
+
+    $default  reduce using rule 68 (environment)
+
+
+State 197
+
+   20 titletype: TITLE LCBR math RCBR LSBR math RSBR . LCBR math RCBR
+
+    LCBR  shift, and go to state 209
+
+
+State 198
+
+   19 titletype: TITLE LSBR math RSBR LCBR math RCBR .
+
+    $default  reduce using rule 19 (titletype)
+
+
+State 199
+
+    9 usepackage: USEPACKAGE LSBR math RSBR LCBR math RCBR .
+
+    $default  reduce using rule 9 (usepackage)
+
+
+State 200
+
+   77 textoption: INPUT LSBR math RSBR LCBR math RCBR .
+
+    $default  reduce using rule 77 (textoption)
+
+
+State 201
+
+   81 textoption: INPUT LSBR math RSBR LSBR math RSBR . LCBR math RCBR
+   82           | INPUT LSBR math RSBR LSBR math RSBR . LSBR math RSBR LCBR math RCBR
+
+    LCBR  shift, and go to state 210
+    LSBR  shift, and go to state 211
+
+
+State 202
+
+   63 environment: BEGINENV textenvir LCBR body RCBR ENDENV textenvir .
+
+    $default  reduce using rule 63 (environment)
+
+
+State 203
+
+   51 operand: operand POW LCBR RCBR LCBR math RCBR .
+
+    $default  reduce using rule 51 (operand)
+
+
+State 204
+
+   52 operand: operand POW LCBR math RCBR LCBR RCBR .
+
+    $default  reduce using rule 52 (operand)
+
+
+State 205
+
+   50 operand: operand POW LCBR math RCBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 212
+
+
+State 206
+
+   57 operand: operand INDEX LCBR RCBR LCBR math RCBR .
+
+    $default  reduce using rule 57 (operand)
+
+
+State 207
+
+   58 operand: operand INDEX LCBR math RCBR LCBR RCBR .
+
+    $default  reduce using rule 58 (operand)
+
+
+State 208
+
+   56 operand: operand INDEX LCBR math RCBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 213
+
+
+State 209
+
+   20 titletype: TITLE LCBR math RCBR LSBR math RSBR LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 214
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 210
+
+   81 textoption: INPUT LSBR math RSBR LSBR math RSBR LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 215
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 211
+
+   82 textoption: INPUT LSBR math RSBR LSBR math RSBR LSBR . math RSBR LCBR math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 216
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 212
+
+   50 operand: operand POW LCBR math RCBR LCBR math RCBR .
+
+    $default  reduce using rule 50 (operand)
+
+
+State 213
+
+   56 operand: operand INDEX LCBR math RCBR LCBR math RCBR .
+
+    $default  reduce using rule 56 (operand)
+
+
+State 214
+
+   20 titletype: TITLE LCBR math RCBR LSBR math RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 217
+
+
+State 215
+
+   81 textoption: INPUT LSBR math RSBR LSBR math RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 218
+
+
+State 216
+
+   82 textoption: INPUT LSBR math RSBR LSBR math RSBR LSBR math . RSBR LCBR math RCBR
+
+    RSBR  shift, and go to state 219
+
+
+State 217
+
+   20 titletype: TITLE LCBR math RCBR LSBR math RSBR LCBR math RCBR .
+
+    $default  reduce using rule 20 (titletype)
+
+
+State 218
+
+   81 textoption: INPUT LSBR math RSBR LSBR math RSBR LCBR math RCBR .
+
+    $default  reduce using rule 81 (textoption)
+
+
+State 219
+
+   82 textoption: INPUT LSBR math RSBR LSBR math RSBR LSBR math RSBR . LCBR math RCBR
+
+    LCBR  shift, and go to state 220
+
+
+State 220
+
+   82 textoption: INPUT LSBR math RSBR LSBR math RSBR LSBR math RSBR LCBR . math RCBR
+
+    SPACE        shift, and go to state 7
+    OPERATOR     shift, and go to state 8
+    SPECCHAR     shift, and go to state 9
+    LCBR         shift, and go to state 11
+    MAKETITLE    shift, and go to state 14
+    TABLEOFCONT  shift, and go to state 16
+    MATH         shift, and go to state 17
+    BSL          shift, and go to state 18
+    LSBR         shift, and go to state 19
+    NEWPAGE      shift, and go to state 20
+    INPUT        shift, and go to state 21
+    LSKF         shift, and go to state 22
+    IF           shift, and go to state 23
+    BEGINENV     shift, and go to state 24
+    FORMAT       shift, and go to state 25
+    INTEGER      shift, and go to state 26
+    WORD         shift, and go to state 27
+
+    math         go to state 221
+    operand      go to state 32
+    if           go to state 33
+    environment  go to state 34
+    textoption   go to state 35
+
+
+State 221
+
+   82 textoption: INPUT LSBR math RSBR LSBR math RSBR LSBR math RSBR LCBR math . RCBR
+
+    RCBR  shift, and go to state 222
+
+
+State 222
+
+   82 textoption: INPUT LSBR math RSBR LSBR math RSBR LSBR math RSBR LCBR math RCBR .
+
+    $default  reduce using rule 82 (textoption)

@@ -1,0 +1,12 @@
+﻿  Performing Custom Build Step
+  Не удается найти D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\bison\y.tab.c
+  Не удается найти D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\bison\y.tab.h
+  conflicts: 50 shift/reduce
+  lex.yy.c
+D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\project.h(11,1): warning C4005: _CRT_SECURE_NO_WARNINGS: изменение макроопределения
+D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\bison\lex.yy.c : message : см. предыдущее определение "_CRT_SECURE_NO_WARNINGS"
+  y.tab.c
+D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\project.h(11,1): warning C4005: _CRT_SECURE_NO_WARNINGS: изменение макроопределения
+D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\bison\y.tab.c : message : см. предыдущее определение "_CRT_SECURE_NO_WARNINGS"
+  Создание кода...
+  Project.vcxproj -> D:\Arina\Photos&Book&Films\Резюме\Проекты\+\Компиляторы\Курсовая работа\Project\x64\Debug\Project.exe
